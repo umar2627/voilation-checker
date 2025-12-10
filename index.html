@@ -1,0 +1,71 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Licence Compliance Checker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h2>Credit Licence Compliance Checker</h2>
+    <div class="question">
+      <label>1️⃣ Do you engage in credit activities (offering or managing credit)?</label>
+      <select id="engagesInCreditActivity">
+        <option value="false">No</option>
+        <option value="true">Yes</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <label>2️⃣ Do you hold an Australian Credit Licence?</label>
+      <select id="hasLicence">
+        <option value="false">No</option>
+        <option value="true">Yes</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <label>3️⃣ Are you acting on behalf of another person (a principal)?</label>
+      <select id="actsOnBehalfOfPrincipal">
+        <option value="false">No</option>
+        <option value="true">Yes</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <label>4️⃣ Does your principal hold a valid licence?</label>
+      <select id="principalHoldsLicence">
+        <option value="false">No</option>
+        <option value="true">Yes</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <label>5️⃣ Is your principal exempt under s109 or s110?</label>
+      <select id="principalIsExempt">
+        <option value="false">No</option>
+        <option value="true">Yes</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <label>6️⃣ Is your conduct within the authority of the principal?</label>
+      <select id="conductWithinAuthority">
+        <option value="false">No</option>
+        <option value="true">Yes</option>
+      </select>
+    </div>
+
+    <button onclick="checkCompliance()">Check Compliance</button>
+
+    <div id="result" class="result neutral">
+      🧭 Please complete all fields and click 'Check Compliance'
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+
+</body>
+</html>
