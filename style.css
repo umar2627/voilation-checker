@@ -1,10 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  align-items: center;
+}
 body {
   font-family: 'Segoe UI', sans-serif;
   background: #f5f7fa;
   color: #222;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   min-height: 100vh;
 }
 
@@ -13,7 +18,7 @@ body {
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  width: 500px;
+  width: 80%;
 }
 
 h2 {
@@ -27,13 +32,13 @@ h2 {
 }
 
 label {
-  display: block;
   margin-bottom: .5rem;
+  margin-right: 2rem;
   font-weight: 600;
 }
 
 select {
-  width: 100%;
+  width: 30%;
   padding: .5rem;
   border-radius: .3rem;
   border: 1px solid #ccc;
@@ -76,4 +81,51 @@ button:hover {
 .neutral {
   background: #e9f0fa;
   color: #004d80;
+}
+
+.navbar {
+  width: 100%;
+  height: 130px;
+  background-color: #146297;
+  display: flex;
+  align-items: center; 
+  justify-content: space-around;
+}
+
+.nav-links {
+  display: flex;
+  gap: 50px;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  border-top: 2px solid white;
+  padding-top: 10px;
+}
+.link:hover {
+  border-bottom: 2px solid white;
+  padding-bottom: 5px;
+}
+
+footer {
+  width: 100%;
+  height: 80px;
+  background-color: #146297;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+  margin-top: auto;
+}
+
+.header {
+  width: 100%;
+  height: 400px;
+}
+.header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
