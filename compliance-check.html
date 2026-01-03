@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Licensing Compliance Checker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <navbar class="navbar">
+    <div class="logo">
+      <a href="./index.html"><img src="./logo.svg" alt="Logo" /></a>
+    </div>
+    <div class="nav-links">
+      <span class="navliks"><a class="link" href="./compliance-checker.html">Licence Compliance Checker</a></span>
+      <span class="navliks"><a class="link active" href="./compliance-check.html">Compliance Check</a></span>
+      <span class="navliks"><a class="link" href="./index.html">Contact us</a></span>
+      <span class="navliks"><a class="link" href="./index.html">About us</a></span>
+    </div>
+  </navbar>
+
+  <main class="container">
+    <header>
+      <h1>Credit Licensing Compliance Checker</h1>
+      <p class="subtitle">Section 29 – National Consumer Credit Protection Act 2009</p>
+    </header>
+
+    <section aria-labelledby="form-heading">
+      <h2 id="form-heading">Compliance Form</h2>
+
+      <form id="complianceForm" onsubmit="event.preventDefault(); checkCompliance();">
+        <div class="form-row">
+          <label for="activityType">Credit Activity Type</label>
+          <input id="activityType" type="text" placeholder="e.g., consumer lending" />
+        </div>
+
+
+
+        <div class="form-row">
+          <label for="actingEntity">Acting Entity</label>
+          <input id="actingEntity" type="text" />
+        </div>
+
+        <div class="form-row">
+          <label for="licenceNumber">Australian Credit Licence Number</label>
+          <input id="licenceNumber" type="text" />
+        </div>
+
+        <div class="form-row">
+          <label for="hasDrivingLicence">Has driving licence</label>
+          <select id="hasDrivingLicence">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="personRole">Person Role</label>
+          <select id="personRole">
+            <option value="Director">Director</option>
+            <option value="Employee">Employee</option>
+            <option value="Credit Representative">Credit Representative</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="principalEntity">Principal Entity</label>
+          <input id="principalEntity" type="text" />
+        </div>
+
+        <div class="form-row">
+          <label for="authoritySource">Authority Source</label>
+          <input id="authoritySource" type="text" placeholder="E.g., written agreement, agency" />
+        </div>
+
+        <div class="form-row">
+          <label for="feesCharged">Fees Charged (AUD)</label>
+          <input id="feesCharged" type="number" min="0" step="0.01" />
+        </div>
+
+        <div class="form-row">
+          <label for="exemptionRef">Exemption Section Reference</label>
+          <input id="exemptionRef" type="text" placeholder="e.g., s109, s110" />
+        </div>
+
+        <div class="form-row">
+          <button type="submit">Check Compliance</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="results" class="result neutral" aria-live="polite">
+      <strong>Compliance Status:</strong>
+      <div id="statusText">Complete the form and click "Check Compliance"</div>
+      <div id="licenceInfo"></div>
+      <div id="drivingLicenceText"></div>
+      <div id="offenceText"></div>
+      <div id="defenceText"></div>
+      <div id="penaltyText"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div>
+      <h4> Presented By: <span>SYED BILAL HASSAN</span></h4>
+    </div>
+    <div>
+      <h4>Professor: <span>Enrico franchesco</span></h4>
+    </div>
+  </footer>
+
+  <script>
+    // checkCompliance()
+    // Legal logic summary (comments):
+    // - Activities after 1 July 2011 fall under the Act.
+    // - If licence number missing -> unlicensed activity.
+    // - If fees > 0 and no licence -> offence (fee-taking without licence).
+    // - If principal + authority + (licence or exemption) present -> defence may apply.
+
+    function checkCompliance() {
+      const licence = document.getElementById('licenceNumber').value.trim();
+      const fees = Number(document.getElementById('feesCharged').value || 0);
+      const principal = document.getElementById('principalEntity').value.trim();
+      const authority = document.getElementById('authoritySource').value.trim();
+      const exemption = document.getElementById('exemptionRef').value.trim();
+
+      const statusEl = document.getElementById('statusText');
+      const offenceEl = document.getElementById('offenceText');
+      const defenceEl = document.getElementById('defenceText');
+      const penaltyEl = document.getElementById('penaltyText');
+      const resultsSection = document.getElementById('results');
+
+      // Reset
+      offenceEl.textContent = '';
+      defenceEl.textContent = '';
+      penaltyEl.textContent = '';
+
+      // Clear licence and driving licence display fields
+      const licenceInfoEl = document.getElementById('licenceInfo');
+      const drivingLicenceEl = document.getElementById('drivingLicenceText');
+      if (licenceInfoEl) licenceInfoEl.textContent = '';
+      if (drivingLicenceEl) drivingLicenceEl.textContent = '';
+
+      // Activity date fields removed - assume activities are in-scope by default
+      const inScope = true;
+
+      // Read driving licence select
+      const hasDrivingLicence = document.getElementById('hasDrivingLicence') ? document.getElementById('hasDrivingLicence').value === 'true' : false;
+
+      // Determine licensed status
+      const isLicensed = licence !== '';
+
+      // Determine offence: fees > 0 and no licence
+      const offenceDetected = (!isLicensed && fees > 0);
+
+      // Determine defence: principal + authority + (licence or exemption)
+      const defenceApplied = principal && authority && (isLicensed || exemption);
+
+      // Always show licence number and driving licence status in results area
+      if (licenceInfoEl) licenceInfoEl.textContent = licence ? `Licence Number: ${licence}` : 'Licence Number: (none)';
+      if (drivingLicenceEl) drivingLicenceEl.textContent = `Has driving licence: ${hasDrivingLicence ? 'Yes' : 'No'}`;
+
+      // If licensed, compliant
+      if (isLicensed) {
+        statusEl.textContent = 'Compliant: Licence present.';
+        resultsSection.className = 'result compliant';
+        penaltyEl.textContent = 'No penalty.';
+        return;
+      }
+
+      // Not licensed
+      statusEl.textContent = 'Non-Compliant: No licence provided';
+      resultsSection.className = 'result noncompliant';
+
+      // Offence logic
+      if (offenceDetected) {
+        offenceEl.textContent = 'Offence Detected: Fees were charged without a licence.';
+        // Suggest a penalty outcome (informational only)
+        penaltyEl.textContent = 'Penalty Outcome: Offence may attract penalties under s29; refer to legal counsel.';
+      } else {
+        offenceEl.textContent = 'Offence Detected: No (no fees charged), but activity may still be unauthorised.';
+        penaltyEl.textContent = 'Penalty Outcome: No immediate fee-based offence detected.';
+      }
+
+      // Defence
+      if (defenceApplied) {
+        defenceEl.textContent = 'Defence Applied: Acting under a principal with authority and licence/exemption — defence may apply.';
+        // If defence applies, change colour to indicate defence
+        resultsSection.className = 'result defence';
+      }
+
+      // Accessibility: focus result
+      resultsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+
+</html>
