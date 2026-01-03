@@ -3,20 +3,9 @@ function getRadioValue(name) {
   return el ? el.value === 'true' : false;
 }
 
-function togglePenaltyVisibility() {
-  const penaltySection = document.getElementById('penaltySection');
-  const found = document.getElementById('foundGuilty');
-  if (!penaltySection || !found) return;
-  if (found.checked) penaltySection.classList.remove('hidden');
-  else penaltySection.classList.add('hidden');
-}
 
-// Attach change handler if element exists (script runs at end of body)
-const guiltyCheckbox = document.getElementById('foundGuilty');
-if (guiltyCheckbox) guiltyCheckbox.addEventListener('change', togglePenaltyVisibility);
 
-const defaultPenaltyMessage = 'Penalty not specified.';
-const euroFormatter = new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR' });
+
 
 function checkCompliance() {
   const engages = getRadioValue('engagesInCreditActivity');
@@ -26,11 +15,7 @@ function checkCompliance() {
   const principalExempt = getRadioValue('principalIsExempt');
   const withinAuthority = getRadioValue('conductWithinAuthority');
 
-  const foundGuilty = document.getElementById('foundGuilty') ? document.getElementById('foundGuilty').checked : false;
-  const penaltyAmount = Number(document.getElementById('penaltyAmount') ? document.getElementById('penaltyAmount').value : 0);
-  const penaltyName = document.getElementById('penaltyName') ? document.getElementById('penaltyName').value : '';
-  const penaltyDescription = document.getElementById('penaltyDescription') ? document.getElementById('penaltyDescription').value : '';
-  const offenceType = document.getElementById('offenceType') ? document.getElementById('offenceType').value : '';
+
 
   const resultDiv = document.getElementById('result');
 
@@ -53,30 +38,6 @@ function checkCompliance() {
   }
 
   // If we reach here, it's non-compliant
-  let message = "❌ Non-Compliant: Engaging in credit activity without licence or defence. This may breach s29(1)-(2).";
-  message += '\n';
-  if (offenceType) {
-    message += `Offence: ${offenceType}. `;
-  }
-
-  if (foundGuilty) {
-    // include name, amount and description if provided
-    if (penaltyName) {
-      message += `Penalty: ${penaltyName}. `;
-    }
-    if (penaltyAmount && penaltyAmount > 0) {
-      message += `Amount: ${euroFormatter.format(penaltyAmount)}. `;
-    }
-    if (penaltyDescription) {
-      message += `Details: ${penaltyDescription}. `;
-    }
-    if (!penaltyName && !(penaltyAmount && penaltyAmount > 0) && !penaltyDescription) {
-      message += defaultPenaltyMessage;
-    }
-  } else {
-    message += 'Not marked as found guilty.';
-  }
-
-  resultDiv.textContent = message;
+  resultDiv.textContent = "❌ Non-Compliant: Engaging in credit activity without licence or defence. This may breach s29(1)-(2).";
   resultDiv.className = "result noncompliant";
 }
