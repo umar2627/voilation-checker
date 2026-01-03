@@ -66,6 +66,7 @@ button:hover {
   border-radius: .5rem;
   font-weight: 600;
   text-align: center;
+  white-space: pre-line;
 }
 
 .compliant {
@@ -129,3 +130,42 @@ footer {
   height: 100%;
   object-fit: cover;
 }
+
+/* NEW: styles for radio groups and offence inputs */
+.radio-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: .5rem;
+}
+.radio-group label {
+  font-weight: 600;
+}
+
+.offence-section h3 {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  color: #333;
+}
+.offence-section input[type="text"],
+.offence-section input[type="number"] {
+  width: 60%;
+  padding: .4rem;
+  margin-left: .5rem;
+  border-radius: .3rem;
+  border: 1px solid #ccc;
+}
+.offence-section textarea {
+  width: 100%;
+  padding: .5rem;
+  margin-top: .5rem;
+  border-radius: .3rem;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+.inline {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+} 
+
+.hidden { display: none; }

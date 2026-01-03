@@ -24,50 +24,62 @@
     <h2>Credit Licence Compliance Checker</h2>
     <div class="question">
       <label>1️⃣ Do you engage in credit activities (offering or managing credit)?</label>
-      <select id="engagesInCreditActivity">
-        <option value="false">No</option>
-        <option value="true">Yes</option>
-      </select>
+      <div class="radio-group">
+        <label><input type="radio" name="engagesInCreditActivity" value="true"> Yes</label>
+        <label><input type="radio" name="engagesInCreditActivity" value="false" checked> No</label>
+      </div>
     </div>
 
     <div class="question">
       <label>2️⃣ Do you hold an Australian Credit Licence?</label>
-      <select id="hasLicence">
-        <option value="false">No</option>
-        <option value="true">Yes</option>
-      </select>
+      <div class="radio-group">
+        <label><input type="radio" name="hasLicence" value="true"> Yes</label>
+        <label><input type="radio" name="hasLicence" value="false" checked> No</label>
+      </div>
     </div>
 
     <div class="question">
       <label>3️⃣ Are you acting on behalf of another person (a principal)?</label>
-      <select id="actsOnBehalfOfPrincipal">
-        <option value="false">No</option>
-        <option value="true">Yes</option>
-      </select>
+      <div class="radio-group">
+        <label><input type="radio" name="actsOnBehalfOfPrincipal" value="true"> Yes</label>
+        <label><input type="radio" name="actsOnBehalfOfPrincipal" value="false" checked> No</label>
+      </div>
     </div>
 
     <div class="question">
       <label>4️⃣ Does your principal hold a valid licence?</label>
-      <select id="principalHoldsLicence">
-        <option value="false">No</option>
-        <option value="true">Yes</option>
-      </select>
+      <div class="radio-group">
+        <label><input type="radio" name="principalHoldsLicence" value="true"> Yes</label>
+        <label><input type="radio" name="principalHoldsLicence" value="false" checked> No</label>
+      </div>
     </div>
 
     <div class="question">
       <label>5️⃣ Is your principal exempt under s109 or s110?</label>
-      <select id="principalIsExempt">
-        <option value="false">No</option>
-        <option value="true">Yes</option>
-      </select>
+      <div class="radio-group">
+        <label><input type="radio" name="principalIsExempt" value="true"> Yes</label>
+        <label><input type="radio" name="principalIsExempt" value="false" checked> No</label>
+      </div>
     </div>
 
     <div class="question">
       <label>6️⃣ Is your conduct within the authority of the principal?</label>
-      <select id="conductWithinAuthority">
-        <option value="false">No</option>
-        <option value="true">Yes</option>
-      </select>
+      <div class="radio-group">
+        <label><input type="radio" name="conductWithinAuthority" value="true"> Yes</label>
+        <label><input type="radio" name="conductWithinAuthority" value="false" checked> No</label>
+      </div>
+    </div>
+
+    <div class="question offence-section">
+      <h3>Offence & Penalty Details</h3>
+      <label class="inline"><input type="checkbox" id="foundGuilty"> Found guilty?</label>
+      <div id="penaltySection" class="hidden">
+        <label>Offence type: <input type="text" id="offenceType" placeholder="e.g., Unlicensed credit conduct"></label>
+        <label>Penalty name: <input type="text" id="penaltyName" placeholder="e.g., Court fine"></label>
+        <label>Penalty amount (EUR): <input type="number" id="penaltyAmount" min="0" step="0.01" placeholder="0.00"></label>
+        <label>Penalty description:</label>
+        <textarea id="penaltyDescription" placeholder="Enter details about the penalty, e.g., reason or order text" rows="3"></textarea>
+      </div>
     </div>
 
     <button onclick="checkCompliance()">Check Compliance</button>
