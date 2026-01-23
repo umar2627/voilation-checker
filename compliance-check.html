@@ -168,14 +168,14 @@
       // If licensed, compliant
       if (isLicensed) {
         statusEl.textContent = 'Compliant: Licence present.';
-        resultsSection.className = 'result compliant';
+        resultsSection.className = 'result neutral result-column compliant';
         penaltyEl.textContent = 'No penalty.';
         return;
       }
 
       // Not licensed
       statusEl.textContent = 'Non-Compliant: No licence provided';
-      resultsSection.className = 'result noncompliant';
+      resultsSection.className = 'result neutral result-column noncompliant';
 
       // Offence logic
       if (offenceDetected) {
@@ -191,7 +191,7 @@
       if (defenceApplied) {
         defenceEl.textContent = 'Defence Applied: Acting under a principal with authority and licence/exemption — defence may apply.';
         // If defence applies, change colour to indicate defence
-        resultsSection.className = 'result defence';
+        resultsSection.className = 'result neutral result-column defence';
       }
 
       // Accessibility: focus result
