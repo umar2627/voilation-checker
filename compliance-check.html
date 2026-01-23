@@ -28,80 +28,80 @@
       <p class="subtitle">Section 29 – National Consumer Credit Protection Act 2009</p>
     </header>
 
-    <section aria-labelledby="form-heading">
-      <h2 id="form-heading">Compliance Form</h2>
+    <div class="form-container">
+      <section aria-labelledby="form-heading" class="form-column">
+        <h2 id="form-heading">Compliance Form</h2>
 
-      <form id="complianceForm" onsubmit="event.preventDefault(); checkCompliance();">
-        <div class="form-row">
-          <label for="activityType">Credit Activity Type</label>
-          <input id="activityType" type="text" placeholder="e.g., consumer lending" />
-        </div>
+        <form id="complianceForm" onsubmit="event.preventDefault(); checkCompliance();">
+          <div class="form-row">
+            <label for="activityType">Credit Activity Type</label>
+            <input id="activityType" type="text" placeholder="e.g., consumer lending" />
+          </div>
 
+          <div class="form-row">
+            <label for="actingEntity">Acting Entity</label>
+            <input id="actingEntity" type="text" />
+          </div>
 
+          <div class="form-row">
+            <label for="licenceNumber">Australian Credit Licence Number</label>
+            <input id="licenceNumber" type="text" />
+          </div>
 
-        <div class="form-row">
-          <label for="actingEntity">Acting Entity</label>
-          <input id="actingEntity" type="text" />
-        </div>
+          <div class="form-row">
+            <label for="hasDrivingLicence">Has driving licence</label>
+            <select id="hasDrivingLicence">
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+            </select>
+          </div>
 
-        <div class="form-row">
-          <label for="licenceNumber">Australian Credit Licence Number</label>
-          <input id="licenceNumber" type="text" />
-        </div>
+          <div class="form-row">
+            <label for="personRole">Person Role</label>
+            <select id="personRole">
+              <option value="Director">Director</option>
+              <option value="Employee">Employee</option>
+              <option value="Credit Representative">Credit Representative</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
 
-        <div class="form-row">
-          <label for="hasDrivingLicence">Has driving licence</label>
-          <select id="hasDrivingLicence">
-            <option value="false">No</option>
-            <option value="true">Yes</option>
-          </select>
-        </div>
+          <div class="form-row">
+            <label for="principalEntity">Principal Entity</label>
+            <input id="principalEntity" type="text" />
+          </div>
 
-        <div class="form-row">
-          <label for="personRole">Person Role</label>
-          <select id="personRole">
-            <option value="Director">Director</option>
-            <option value="Employee">Employee</option>
-            <option value="Credit Representative">Credit Representative</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
+          <div class="form-row">
+            <label for="authoritySource">Authority Source</label>
+            <input id="authoritySource" type="text" placeholder="E.g., written agreement, agency" />
+          </div>
 
-        <div class="form-row">
-          <label for="principalEntity">Principal Entity</label>
-          <input id="principalEntity" type="text" />
-        </div>
+          <div class="form-row">
+            <label for="feesCharged">Fees Charged (AUD)</label>
+            <input id="feesCharged" type="number" min="0" step="0.01" />
+          </div>
 
-        <div class="form-row">
-          <label for="authoritySource">Authority Source</label>
-          <input id="authoritySource" type="text" placeholder="E.g., written agreement, agency" />
-        </div>
+          <div class="form-row">
+            <label for="exemptionRef">Exemption Section Reference</label>
+            <input id="exemptionRef" type="text" placeholder="e.g., s109, s110" />
+          </div>
 
-        <div class="form-row">
-          <label for="feesCharged">Fees Charged (AUD)</label>
-          <input id="feesCharged" type="number" min="0" step="0.01" />
-        </div>
+          <div class="form-row">
+            <button type="submit">Check Compliance</button>
+          </div>
+        </form>
+      </section>
 
-        <div class="form-row">
-          <label for="exemptionRef">Exemption Section Reference</label>
-          <input id="exemptionRef" type="text" placeholder="e.g., s109, s110" />
-        </div>
-
-        <div class="form-row">
-          <button type="submit">Check Compliance</button>
-        </div>
-      </form>
-    </section>
-
-    <section id="results" class="result neutral" aria-live="polite">
-      <strong>Compliance Status:</strong>
-      <div id="statusText">Complete the form and click "Check Compliance"</div>
-      <div id="licenceInfo"></div>
-      <div id="drivingLicenceText"></div>
-      <div id="offenceText"></div>
-      <div id="defenceText"></div>
-      <div id="penaltyText"></div>
-    </section>
+      <section id="results" class="result neutral result-column" aria-live="polite">
+        <strong>Compliance Status:</strong>
+        <div id="statusText">Complete the form and click "Check Compliance"</div>
+        <div id="licenceInfo"></div>
+        <div id="drivingLicenceText"></div>
+        <div id="offenceText"></div>
+        <div id="defenceText"></div>
+        <div id="penaltyText"></div>
+      </section>
+    </div>
 
   </main>
 

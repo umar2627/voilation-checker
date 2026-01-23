@@ -19,7 +19,6 @@ body {
   border-radius: 1rem;
   box-shadow: 0 8px 20px rgba(2,6,23,0.08);
   width: 90%;
-  max-width: 900px;
   margin: 2.5rem auto;
 }
 
@@ -38,8 +37,12 @@ h2 {
   margin: 0.75rem 0;
 }
 
-/* Button row aligns to the right */
-.form-row.button-row { display: flex; justify-content: flex-end; }
+/* Button row aligns to the center */
+.form-row:has(button) {
+  display: flex;
+  justify-content: center;
+  grid-template-columns: none;
+}
 
 label {
   display: block;
@@ -231,3 +234,22 @@ footer {
 } 
 
 .hidden { display: none; }
+
+.form-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-column {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.result-column {
+  flex: 1;
+  margin-left: 20px;
+  padding: 20px;
+  border: 1px solid #d6dde6;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
